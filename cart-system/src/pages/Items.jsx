@@ -5,6 +5,12 @@ import Button from '../components/Button'
 export default function Items() {
   const { addToCart } = useCart()
 
+  const handleAddToCart = (item) => {
+    addToCart(item)
+    // Add this for debugging
+    console.log('Added to cart:', item)
+  }
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -31,7 +37,7 @@ export default function Items() {
               <p className="text-gray-600 mb-4 line-clamp-2">{item.description}</p>
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-bold text-blue-600">{formatPrice(item.price)}</span>
-                <Button onClick={() => addToCart(item)}>
+                <Button onClick={() => handleAddToCart(item)}>
                   Add to Cart
                 </Button>
               </div>

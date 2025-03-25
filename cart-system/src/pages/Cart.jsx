@@ -5,6 +5,9 @@ export default function Cart() {
   const { cartItems, removeFromCart, updateQuantity } = useCart()
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
+  // Add this for debugging
+  console.log('Cart page items:', cartItems)
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -49,7 +52,7 @@ export default function Cart() {
                           ))}
                         </select>
                         <span className="text-xl font-semibold text-blue-600">
-                          {formatPrice(item.price * item.quantity)}
+                          ₹{item.price * item.quantity}
                         </span>
                       </div>
                       <Button 
@@ -69,12 +72,12 @@ export default function Cart() {
               <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
               <div className="flex justify-between mb-4">
                 <span>Subtotal</span>
-                <span>{formatPrice(total)}</span>
+                <span>₹{total}</span>
               </div>
               <div className="border-t pt-4 mt-4">
                 <div className="flex justify-between mb-4">
                   <span className="text-xl font-semibold">Total</span>
-                  <span className="text-xl font-bold text-blue-600">{formatPrice(total)}</span>
+                  <span className="text-xl font-bold text-blue-600">₹{total}</span>
                 </div>
                 <Button className="w-full">
                   Proceed to Checkout
